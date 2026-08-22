@@ -27,9 +27,8 @@ docker run -d \
   -p 172.16.0.1:9999:9999 \
   -e HINDSIGHT_API_LLM_PROVIDER=deepseek \
   -e HINDSIGHT_API_LLM_API_KEY="$DEEPSEEK_API_KEY" \
-  -e HINDSIGHT_API_LLM_MODEL=deepseek-v4-pro \
+  -e HINDSIGHT_API_LLM_MODEL=deepseek-chat \
   -e HINDSIGHT_API_LLM_BASE_URL=https://api.deepseek.com \
-  -e HINDSIGHT_API_ENABLE_OBSERVATIONS=true \
   -e HINDSIGHT_API_TENANT_EXTENSION=hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension \
   -e HINDSIGHT_API_TENANT_API_KEY="$HINDSIGHT_API_TENANT_API_KEY" \
   -e HINDSIGHT_CP_ACCESS_KEY="$HINDSIGHT_CP_ACCESS_KEY" \
@@ -39,6 +38,11 @@ docker run -d \
   -e HINDSIGHT_API_WORKER_ID=hindsight-prod \
   -v hindsight-data:/home/hindsight/.pg0 \
   ghcr.io/vectorize-io/hindsight:latest
+
+# Attach to the hermes-amihai network so the Hermes container can reach the API
+# by name at http://hindsight:8888 (2026-08-22). Loopback publishes stay as the
+# external gate; this adds inter-container reachability only.
+docker network connect hermes-amihai_default hindsight 2>/dev/null || true
 
 echo "waiting for API ..."
 for i in $(seq 1 24); do
