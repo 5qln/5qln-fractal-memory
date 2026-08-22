@@ -33,7 +33,9 @@ The brain keeps the trail from claiming the center. The trail lives *around* the
 
 ## Status
 
-**Phase 1 done (2026-08-22):** Hindsight v0.9.1 deployed self-hosted, auth enabled, bank `living` created, retain→recall verified (four-way retrieval + entity resolution + DeepSeek structured output all confirmed). Plugin wiring + cell-tagging are next.
+**Phase 1 done (2026-08-22):** Hindsight v0.9.1 deployed self-hosted, auth enabled, bank `living` created, retain→recall verified (four-way retrieval + entity resolution + DeepSeek structured output all confirmed).
+
+**Access:** control plane reachable from a device over the WireGuard tunnel at **`http://10.8.0.1:9999`** (log in with `HINDSIGHT_CP_ACCESS_KEY` from `hindsight.env`). API stays loopback-bound — no public surface. Plugin wiring + cell-tagging are next.
 
 ## Files
 

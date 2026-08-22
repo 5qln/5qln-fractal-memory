@@ -96,15 +96,15 @@ Every decision, the context it was made in, the alternatives considered, and the
 
 ---
 
-## DC-08 — Exposure: loopback-only + auth
+## DC-08 — Exposure: loopback API + tunnel bridge control plane (no public surface)
 
-**Decision:** Bind API (8888) and control plane (9999) to `127.0.0.1` only; enable API-key auth.
+**Decision:** Bind the API (8888) to `127.0.0.1` only; publish the control plane (9999) on the docker-bridge gateway (`172.16.0.1`) so it rides the WireGuard tunnel via DNAT. Enable API-key auth. Never bind `0.0.0.0`.
 
-**Context:** Standing preference is tunnel-only admin surfaces, zero public attack surface. Docker bypasses UFW, so the bind is the real gate.
+**Context:** Standing preference is tunnel-only admin surfaces, zero public attack surface. Docker bypasses UFW, so the bind is the real gate. The control plane must be visible from the iPad/S25, which are already on the WireGuard tunnel — so it is published on the bridge gateway (the DNAT target), not the loopback.
 
-**Chosen:** Loopback binds + auth. Reach via WireGuard tunnel (DNAT) or SSH forward.
+**Chosen:** API loopback-bound; control plane on `172.16.0.1:9999`, reached from a device at `http://10.8.0.1:9999` (self-healing DNAT rule in `vps1-dnat.sh`, cron `@reboot` + `*/5`). Auth as the second layer.
 
-**Consequences:** No public exposure; auth is a second layer (defense in depth).
+**Consequences:** No public exposure; the control plane is reachable over the existing WireGuard route with no per-app port forwarding.
 
 ---
 

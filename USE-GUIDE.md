@@ -78,6 +78,22 @@ Expected: the retained fact comes back in recall with per-arm scores (`semantic`
 
 ---
 
+### 3b. Open the control plane (from a device)
+
+The control plane is published on the docker bridge so it rides the WireGuard tunnel — no per-app port forwarding:
+
+1. Connect the device to the WireGuard tunnel.
+2. Open **`http://10.8.0.1:9999`**.
+3. Log in with the control-plane access key (read it on the VPS):
+
+```bash
+grep HINDSIGHT_CP_ACCESS_KEY /home/deploy/ops/hindsight.env
+```
+
+You'll see the `living` bank and its memories. The `10.8.0.1:9999 → 172.16.0.1:9999` DNAT rule lives in `vps1-dnat.sh` (self-healing cron).
+
+---
+
 ## 4. The memory model (how 5qln maps onto Hindsight)
 
 - **Bank = the cell.** One writable bank, `living`.
@@ -172,8 +188,7 @@ curl -s -X POST -H "Authorization: Bearer $KEY" -H 'Content-Type: application/js
 
 ## 11. Next steps (not yet shipped)
 
-1. **Tunnel access** for the control plane (so the bank is visible from a device over WireGuard).
-2. **Wire the plugin** — replace the static seed with per-turn recall + post-turn retain (the actual "living move").
-3. **Cell-tagging in the plugin** — tag every phase-memory G/Q/P/V automatically.
-4. **Pi agents as lenses** — five instances, one per phase, rotating, addressing Hindsight over MCP (using the MCP auth token).
-5. **Route through LiteLLM** (capped) + **external Postgres** (production hardening).
+1. **Wire the plugin** — replace the static seed with per-turn recall + post-turn retain (the actual "living move").
+2. **Cell-tagging in the plugin** — tag every phase-memory G/Q/P/V automatically.
+3. **Pi agents as lenses** — five instances, one per phase, rotating, addressing Hindsight over MCP (using the MCP auth token).
+4. **Route through LiteLLM** (capped) + **external Postgres** (production hardening).
