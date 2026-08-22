@@ -24,6 +24,7 @@ docker run -d \
   --restart unless-stopped \
   -p 127.0.0.1:8888:8888 \
   -p 127.0.0.1:9999:9999 \
+  -p 172.16.0.1:9999:9999 \
   -e HINDSIGHT_API_LLM_PROVIDER=deepseek \
   -e HINDSIGHT_API_LLM_API_KEY="$DEEPSEEK_API_KEY" \
   -e HINDSIGHT_API_LLM_MODEL=deepseek-chat \
