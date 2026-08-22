@@ -29,6 +29,7 @@ docker run -d \
   -e HINDSIGHT_API_LLM_API_KEY="$DEEPSEEK_API_KEY" \
   -e HINDSIGHT_API_LLM_MODEL=deepseek-v4-pro \
   -e HINDSIGHT_API_LLM_BASE_URL=https://api.deepseek.com \
+  -e HINDSIGHT_API_ENABLE_OBSERVATIONS=true \
   -e HINDSIGHT_API_TENANT_EXTENSION=hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension \
   -e HINDSIGHT_API_TENANT_API_KEY="$HINDSIGHT_API_TENANT_API_KEY" \
   -e HINDSIGHT_CP_ACCESS_KEY="$HINDSIGHT_CP_ACCESS_KEY" \
