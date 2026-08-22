@@ -181,7 +181,7 @@ curl -s -X POST -H "Authorization: Bearer $KEY" -H 'Content-Type: application/js
 | Symptom | Cause / fix |
 |---|---|
 | `http=401` on every call | key header wrong/missing, or `HINDSIGHT_API_TENANT_EXTENSION` not set (auth silently off) |
-| API up but retain returns JSON error | LLM structured output issue — check the model; `deepseek-chat` verified working |
+| API up but retain returns JSON error | LLM structured output issue — check the model; `deepseek-v4-pro` verified working |
 | `http=000` right after start | image still loading models (PyTorch + embedder + reranker); wait ~30–60s, re-check `/health/live` |
 | Recall returns few/irrelevant results | four-way arms configurable — confirm `enable_temporal_retrieval`/`enable_graph_retrieval`/`enable_reranking` are true |
 

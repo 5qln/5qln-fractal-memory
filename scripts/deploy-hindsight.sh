@@ -27,7 +27,7 @@ docker run -d \
   -p 172.16.0.1:9999:9999 \
   -e HINDSIGHT_API_LLM_PROVIDER=deepseek \
   -e HINDSIGHT_API_LLM_API_KEY="$DEEPSEEK_API_KEY" \
-  -e HINDSIGHT_API_LLM_MODEL=deepseek-chat \
+  -e HINDSIGHT_API_LLM_MODEL=deepseek-v4-pro \
   -e HINDSIGHT_API_LLM_BASE_URL=https://api.deepseek.com \
   -e HINDSIGHT_API_TENANT_EXTENSION=hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension \
   -e HINDSIGHT_API_TENANT_API_KEY="$HINDSIGHT_API_TENANT_API_KEY" \

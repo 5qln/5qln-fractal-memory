@@ -74,7 +74,7 @@ Every decision, the context it was made in, the alternatives considered, and the
 
 ## DC-06 — LLM: DeepSeek direct (first cut) — deviation recorded
 
-**Decision:** Point Hindsight's LLM at DeepSeek directly (`HINDSIGHT_API_LLM_PROVIDER=deepseek`, model `deepseek-chat`).
+**Decision:** Point Hindsight's LLM at DeepSeek directly (`HINDSIGHT_API_LLM_PROVIDER=deepseek`, model `deepseek-v4-pro`).
 
 **Context:** The *design intent* is to route through the LiteLLM gateway (capped, blast-radius doctrine). The key was already on the VPS; direct is the simplest working base.
 
