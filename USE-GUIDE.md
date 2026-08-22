@@ -50,10 +50,11 @@ http=401
 http=200
 ```
 
-**Two gotchas baked into the script (do not remove):**
+**Three gotchas baked into the script (do not remove):**
 
 - Auth is **disabled by default** — the key alone does nothing. The script sets `HINDSIGHT_API_TENANT_EXTENSION=hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension`, which is what actually turns the key check on.
 - The API binds `127.0.0.1` only; the control plane **also** binds the docker-bridge gateway (`172.16.0.1`) so it can ride the WireGuard tunnel. Docker bypasses firewalls, so these binds are the real gate — never bind `0.0.0.0`. Reach the control plane at `http://10.8.0.1:9999` (tunnel DNAT) or via SSH forward.
+- The control plane needs **`HINDSIGHT_CP_DATAPLANE_API_KEY`** set to the tenant API key — without it, login works but the dashboard 401s ("Invalid API key") the moment it queries banks.
 
 ---
 
